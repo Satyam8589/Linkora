@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user.model.js";
 import Profile from "../models/profile.model.js";
 import crypto from "crypto";
+import { json } from "stream/consumers";
 
 export const register = async (req, res) => {
     try {
@@ -81,6 +82,35 @@ export const uploadProfilePicture = async (req, res) => {
         await user.save();
 
         return res.json({ message: 'Profile picture updated' });
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+export const updateUserProfile = async (req, res) => {
+
+    try {
+        const { token, ...newUserData } = req.body;
+
+        const user = await User.findOne({ token: token });
+
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        const { username, email } = newUserData;
+
+        const existingUser = await User.findOne({ $or: [{ username }, { email }]});
+
+        if (existingUser) {
+            if (existingUser || String(existingUser._id) !== String(user._id)) {
+                return res.status(400).json({ message: "User already exists" });
+            }
+        } 
+
+        Object.assign(user, newUserData);
+        await user.save();
+
+        return res.json({ message: "User updated" });
         
     } catch (error) {
         return res.status(500).json({ message: error.message });
