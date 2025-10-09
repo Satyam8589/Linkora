@@ -33,6 +33,8 @@ export const register = async (req, res) => {
             userId: newUser._id
         });
 
+        await profile.save();
+
         console.log(newUser);
 
         return res.json({ message: "User created successfuly" });
@@ -111,6 +113,25 @@ export const updateUserProfile = async (req, res) => {
         await user.save();
 
         return res.json({ message: "User updated" });
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+export const getUserAndProfile = async (req, res) => {
+    
+    try {
+        const { token } =  req.body;
+
+        const user = await User.findOne({ token: token });
+
+        if (!user) return res.status(400).json({ message: "User not found" });
+
+        const userProfile = await Profile.findOne({ userId: user._id })
+            .populate("userId", "name email username profilePicture");
+
+        return res.json(userProfile);
         
     } catch (error) {
         return res.status(500).json({ message: error.message });
