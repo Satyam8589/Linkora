@@ -4,9 +4,10 @@ import Profile from "../models/profile.model.js";
 import crypto from "crypto";
 import { json } from "stream/consumers";
 import { profile } from "console";
-import PDFDocument, { x } from "pdfkit";
+import PDFDocument from "pdfkit";
 import connectionRequest from "../models/connections.model.js";
 import fs from "fs";
+
 
 const convertUserDataToPDF = async (userData) => {
   const doc = new PDFDocument();
