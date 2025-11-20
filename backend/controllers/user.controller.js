@@ -151,7 +151,7 @@ export const updateUserProfile = async (req, res) => {
 
 export const getUserAndProfile = async (req, res) => {
   try {
-    const { token } = req.body;
+    const { token } = req.query;
 
     const user = await User.findOne({ token: token });
 

@@ -1,12 +1,11 @@
 import { clientServer } from "@/config";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-
 export const loginUser = createAsyncThunk(
-  'auth/loginUser',
+  "auth/loginUser",
   async (user, thunkAPI) => {
     try {
-      const response = await clientServer.post('/login', {
+      const response = await clientServer.post("/login", {
         email: user.email,
         password: user.password,
       });
@@ -15,7 +14,7 @@ export const loginUser = createAsyncThunk(
         localStorage.setItem("token", response.data.token);
       } else {
         return thunkAPI.rejectWithValue({
-          message: "token not provided"
+          message: "token not provided",
         });
       }
 
@@ -27,10 +26,10 @@ export const loginUser = createAsyncThunk(
 );
 
 export const registerUser = createAsyncThunk(
-  'user/register',
-  async (user,thunkAPI) => {
+  "user/register",
+  async (user, thunkAPI) => {
     try {
-      const response = await clientServer.post('/register', {
+      const response = await clientServer.post("/register", {
         username: user.username,
         password: user.password,
         email: user.email,
@@ -40,9 +39,25 @@ export const registerUser = createAsyncThunk(
         localStorage.setItem("token", response.data.token);
       }
       return thunkAPI.fulfillWithValue(response.data);
-
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getAboutUser = createAsyncThunk(
+  "user/getAboutUser",
+  async (user, thunkAPI) => {
+    try {
+      const response = await clientServer.get("/get_user_and_profile", {
+        params: {
+          token: user.token,
+        }
+      })
+
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   }
 );

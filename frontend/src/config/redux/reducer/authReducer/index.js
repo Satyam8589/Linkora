@@ -1,17 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, registerUser } from "../../action/authAction";
+import { getAllPosts } from "../../action/postAction";
 
 const initialState = {
-    user: [],
-    isError : false,
-    isSuccess: false,
-    isLoading: false,
-    loggedIn: false,
-    message: "",
-    profileFetched: false,
-    connections: [],
-    connectionRequest: []
-}
+  user: [],
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  loggedIn: false,
+  message: "",
+  profileFetched: false,
+  connections: [],
+  connectionRequest: [],
+};
 
 const authSlice = createSlice({
   name: "auth",
@@ -22,8 +23,8 @@ const authSlice = createSlice({
       state.message = "hello";
     },
     emptyMessage: (state) => {
-      state.message = ""
-    }
+      state.message = "";
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,14 +55,20 @@ const authSlice = createSlice({
         state.isSuccess = true;
         state.loggedIn = true;
         state.message = {
-          message: "Register is sucessful!, Please "
-        }
+          message: "Register is sucessful!, Please ",
+        };
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload || action.error.message;
-      });
+      })
+      .addCase(getAllPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.profileFetched = true;
+        state.user = action.payload.profile
+      })
   },
 });
 
