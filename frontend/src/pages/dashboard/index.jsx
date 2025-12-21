@@ -5,35 +5,37 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-function index() {
+function Dashboard() {
   const router = useRouter();
 
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const authState = useSelector((state) => state.auth);
 
   const [isTokenThere, setIsTokenThere] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("token") === null) {
+    const token = localStorage.getItem("token");
+    if (token === null) {
       router.push("/login");
+    } else {
+      setIsTokenThere(true);
     }
-
-    setIsTokenThere(true);
-  });
+  }, []);
 
   useEffect(() => {
     if (isTokenThere) {
-      dispath(getAllPosts());
-      dispath(getAboutUser({ token: localStorage.getItem("token") }));
+      const token = localStorage.getItem("token");
+      dispatch(getAllPosts());
+      dispatch(getAboutUser({ token }));
     }
-  }, [isTokenThere]);
+  }, [isTokenThere, dispatch]);
 
   return (
     <UserLayout>
-      {authState.user.user && <div>Hey {authState.user.userId.name}</div>}
+      {authState?.user?.userId && <div>Hey {authState.user.userId.name}</div>}
     </UserLayout>
   );
 }
 
-export default index;
+export default Dashboard;

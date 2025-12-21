@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "../../action/authAction";
+import { loginUser, registerUser, getAboutUser } from "../../action/authAction";
 import { getAllPosts } from "../../action/postAction";
 
 const initialState = {
@@ -53,9 +53,9 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.loggedIn = true;
+        state.loggedIn = true; // Auto-login after registration
         state.message = {
-          message: "Register is sucessful!, Please ",
+          message: "Registration successful! Please sign in.",
         };
       })
       .addCase(registerUser.rejected, (state, action) => {
@@ -68,6 +68,12 @@ const authSlice = createSlice({
         state.isError = false;
         state.profileFetched = true;
         state.user = action.payload.profile
+      })
+      .addCase(getAboutUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.profileFetched = true;
+        state.user = action.payload;
       })
   },
 });

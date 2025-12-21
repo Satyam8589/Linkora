@@ -12,7 +12,7 @@ function LoginComponent() {
 
   const router = useRouter();
 
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const [email, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -24,26 +24,26 @@ function LoginComponent() {
     if (authState.loggedIn) {
       router.push("/dashboard");
     }
-  }, [authState.loggedIn]);
+  }, [authState.loggedIn, router]);
 
   useEffect(() => {
     if(localStorage.getItem("token")) {
       router.push("/dashboard");
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
-    dispath(emptyMessage());    
-  }, [userLoginMethod]);
+    dispatch(emptyMessage());    
+  }, [userLoginMethod, dispatch]);
 
   const handleRegister = () => {
     console.log("Registering...");
-    dispath(registerUser({ username, password, email, name }));
+    dispatch(registerUser({ username, password, email, name }));
   };
 
   const handleLogin = () => {
     console.log("Loggin...");
-    dispath(loginUser({ email, password }));
+    dispatch(loginUser({ email, password }));
   };
 
   return (
@@ -62,16 +62,16 @@ function LoginComponent() {
               {!userLoginMethod && (
                 <div className={styles.inputRow}>
                   <input
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={styles.inputField}
-                    type="tyext"
-                    placeholder="Username"
-                  />
-                  <input
                     onChange={(e) => setName(e.target.value)}
                     className={styles.inputField}
-                    type="tyext"
-                    placeholder="Name"
+                    type="text"
+                    placeholder="Full Name (e.g., John Doe)"
+                  />
+                  <input
+                    onChange={(e) => setUsername(e.target.value)}
+                    className={styles.inputField}
+                    type="text"
+                    placeholder="Username"
                   />
                 </div>
               )}
