@@ -54,6 +54,7 @@ function Dashboard() {
         <div className={Styles.scrollComponent}>
           <div className={Styles.createPostContainer}>
             <img
+            
               className={Styles.userProfile}
               width={100}
               src={
@@ -96,13 +97,15 @@ function Dashboard() {
                               ? `${BASE_URL}/uploads/${post.userId.profilePicture}` 
                               : "/images/default-avatar.jpg"
                           }
+                          style={{cursor: "pointer"}}
+                          onClick={() => router.push(`/view_profile/${post.userId?.username}`)}
                           onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = "/images/default-avatar.jpg";
                           }}
                           alt="Profile"
                         />
-                        <div className={Styles.postHeaderInfo}>
+                        <div className={Styles.postHeaderInfo} onClick={() => router.push(`/view_profile/${post.userId?.username}`)}>
                           <h2>{post.userId?.name}</h2>
                           <p>@{post.userId?.username}</p>
                         </div>

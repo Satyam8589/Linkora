@@ -3,6 +3,7 @@ import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setTokenIsThere } from "@/config/redux/reducer/authReducer";
+import { BASE_URL } from "@/config";
 
 function DashboardLayout({ children }) {
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ function DashboardLayout({ children }) {
     <div>
       <div className="container">
         <div className={styles.homeContainer}>
-          {/* LEFT SIDEBAR */}
           <div className={styles.homeContainer__leftBar}>
             <div>
               <div
@@ -92,12 +92,10 @@ function DashboardLayout({ children }) {
             </div>
           </div>
 
-          {/* FEED */}
           <div className={styles.homeContainer__feedContainer}>
             {children}
           </div>
 
-          {/* RIGHT SIDEBAR */}
           <div className={styles.homeContainer__extraContainer}>
             <h3 className={styles.topProfilesTitle}>Top Profiles</h3>
             
@@ -117,7 +115,7 @@ function DashboardLayout({ children }) {
                       <img
                         src={
                           profile.userId?.profilePicture
-                            ? `http://localhost:9090/uploads/${profile.userId.profilePicture}`
+                            ? `${BASE_URL}/uploads/${profile.userId.profilePicture}`
                             : "/images/default-avatar.jpg"
                         }
                         alt={profile.userId?.name}

@@ -109,12 +109,14 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: #333;
+    cursor: pointer;
 }
 
 .postHeaderInfo p {
     margin: 0;
     font-size: 0.9rem;
     color: #666;
+    cursor: pointer;
 }
 
 .deleteButton {
