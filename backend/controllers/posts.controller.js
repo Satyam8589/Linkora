@@ -19,6 +19,8 @@ export const createPost = async (req, res) => {
       body: req.body.body,
       media: req.file != undefined ? req.file.filename : "",
       fileType: req.file != undefined ? req.file.mimetype.split("/")[1] : "",
+      likes: 0,
+      active: true,
     });
 
     await post.save();
@@ -31,13 +33,14 @@ export const createPost = async (req, res) => {
 
 export const getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.find().populate(
-      "userId",
-      "name username email profilePicture"
-    );
+    const posts = await Post.find()
+      .populate("userId", "name username email profilePicture")
+      .sort({ createdAt: -1 });
 
+    console.log(`Fetched ${posts.length} posts from database`);
     return res.json({ posts });
   } catch (error) {
+    console.error("Error fetching posts:", error);
     return res.status(500).json({ message: error.message });
   }
 };
@@ -58,7 +61,7 @@ export const deletePost = async (req, res) => {
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    await Post.deletePost({ _id: post_id });
+    await Post.deleteOne({ _id: post_id });
 
     return res.json({ message: "Post Deleted" });
 
