@@ -28,7 +28,7 @@ function DashboardLayout({ children }) {
           <div className={styles.homeContainer__leftBar}>
             <div>
               <div
-                className={styles.sideBarOption}
+                className={`${styles.sideBarOption} ${router.pathname === "/dashboard" ? styles.activeOption : ""}`}
                 onClick={() => router.push("/dashboard")}
               >
                 <svg
@@ -49,7 +49,7 @@ function DashboardLayout({ children }) {
               </div>
 
               <div
-                className={styles.sideBarOption}
+                className={`${styles.sideBarOption} ${router.pathname === "/discover" ? styles.activeOption : ""}`}
                 onClick={() => router.push("/discover")}
               >
                 <svg
@@ -70,7 +70,7 @@ function DashboardLayout({ children }) {
               </div>
 
               <div
-                className={styles.sideBarOption}
+                className={`${styles.sideBarOption} ${router.pathname === "/my_connections" ? styles.activeOption : ""}`}
                 onClick={() => router.push("/my_connections")}
               >
                 <svg
