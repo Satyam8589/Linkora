@@ -28,7 +28,9 @@ export default function Discover() {
 
           <div className={Styles.allUserProfile}>
             {authState.all_profiles_fetched && authState.all_users && authState.all_users.length > 0 ? (
-              authState.all_users.map((user) => (
+              authState.all_users
+                .filter((user) => user.userId?._id !== authState.user?.userId?._id)
+                .map((user) => (
                 <div onClick={() => {
                   router.push(`/view_profile/${user.userId?.username}`);
                 }} key={user._id} className={Styles.userProfile}>

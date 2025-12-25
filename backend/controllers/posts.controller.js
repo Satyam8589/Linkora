@@ -46,6 +46,25 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
+export const getPostsByUsername = async (req, res) => {
+  const { username } = req.query;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const posts = await Post.find({ userId: user._id })
+      .populate("userId", "name username email profilePicture")
+      .sort({ createdAt: -1 });
+
+    return res.json({ posts });
+  } catch (error) {
+    console.error("Error fetching user posts:", error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const deletePost = async (req, res) => {
   const { token, post_id } = req.body;
 

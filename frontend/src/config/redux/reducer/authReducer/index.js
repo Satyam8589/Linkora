@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser, getAboutUser } from "../../action/authAction";
+import { loginUser, registerUser, getAboutUser, getAllUsers, sendConnectionRequest, getConnectionRequest, getMyConnectionRequests, acceptConnectionRequest, whatAreMyConnections, getSentConnectionRequests } from "../../action/authAction";
 import { getAllPosts } from "../../action/postAction";
-import { getAllUsers } from "../../action/authAction";
 
 const initialState = {
   user: undefined,
@@ -14,6 +13,8 @@ const initialState = {
   profileFetched: false,
   connections: [],
   connectionRequest: [],
+  sentRequests: [],
+  receivedRequests: [],
   all_users: [],
   all_profiles_fetched: false,
 };
@@ -90,6 +91,31 @@ const authSlice = createSlice({
         state.isError = false;
         state.all_profiles_fetched = true;
         state.all_users = action.payload.profile;
+      })
+      .addCase(getConnectionRequest.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.connectionRequest = action.payload;
+      })
+      .addCase(getMyConnectionRequests.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.myConnectionRequests = action.payload;
+      })
+      .addCase(acceptConnectionRequest.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.connectionRequest = action.payload;
+      })
+      .addCase(whatAreMyConnections.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.receivedRequests = action.payload.connections || [];
+      })
+      .addCase(getSentConnectionRequests.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.sentRequests = action.payload.connections || [];
       })
   },
 });

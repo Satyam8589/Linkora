@@ -99,18 +99,41 @@ function DashboardLayout({ children }) {
 
           {/* RIGHT SIDEBAR */}
           <div className={styles.homeContainer__extraContainer}>
-            <h3>Top Profiles</h3>
+            <h3 className={styles.topProfilesTitle}>Top Profiles</h3>
             
-            {authState.all_profiles_fetched &&
-              authState.all_users?.length > 0 &&
-              authState.all_users
-                .filter((profile) => profile.userId !== null)
-                .map((profile) => (
-                  <div key={profile._id}>
-                    <p>{profile.userId?.name}</p>
-                    {/* <p>{profile.userId?.username}</p> */}
-                  </div>
-                ))}
+            <div className={styles.profilesList}>
+              {authState.all_profiles_fetched &&
+                authState.all_users?.length > 0 &&
+                authState.all_users
+                  .filter((profile) => profile.userId !== null)
+                  .filter((profile) => profile.userId?._id !== authState.user?.userId?._id)
+                  .slice(0, 5)
+                  .map((profile) => (
+                    <div 
+                      key={profile._id} 
+                      className={styles.profileCard}
+                      onClick={() => router.push(`/view_profile/${profile.userId?.username}`)}
+                    >
+                      <img
+                        src={
+                          profile.userId?.profilePicture
+                            ? `http://localhost:9090/uploads/${profile.userId.profilePicture}`
+                            : "/images/default-avatar.jpg"
+                        }
+                        alt={profile.userId?.name}
+                        className={styles.profileAvatar}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/images/default-avatar.jpg";
+                        }}
+                      />
+                      <div className={styles.profileInfo}>
+                        <p className={styles.profileName}>{profile.userId?.name}</p>
+                        <p className={styles.profileUsername}>@{profile.userId?.username}</p>
+                      </div>
+                    </div>
+                  ))}
+            </div>
           </div>
         </div>
       </div>
