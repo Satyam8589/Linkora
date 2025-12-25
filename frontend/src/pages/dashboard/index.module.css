@@ -433,3 +433,16 @@
     padding-left: 3.25rem;
     word-wrap: break-word;
 }
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
+
+.loadingGif {
+    width: 150px;
+    height: auto;
+}

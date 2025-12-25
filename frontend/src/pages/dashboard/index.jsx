@@ -243,7 +243,9 @@ function Dashboard() {
       <UserLayout>
 
         <DashboardLayout>
-          <h2>Loading...</h2>
+          <div className={Styles.loadingContainer}>
+            <img src="/loading.gif" alt="Loading..." className={Styles.loadingGif} />
+          </div>
         </DashboardLayout>
 
       </UserLayout>

@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function MyConnectionsPage() {
     const dispatch = useDispatch();
     const authState = useSelector((state) => state.auth);
-    const [activeTab, setActiveTab] = useState('received'); // 'received', 'sent', 'connections'
+    const [activeTab, setActiveTab] = useState('connections');
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
     useEffect(() => {
@@ -70,11 +70,9 @@ export default function MyConnectionsPage() {
         const currentUserId = authState.user?.userId?._id;
         
         if (type === 'connections') {
-            // Get IDs for comparison, handling both object and string formats
             const senderId = connection.userId?._id || connection.userId;
             const receiverId = connection.connectionId?._id || connection.connectionId;
             
-            // If I am the sender, show the receiver. If I am the receiver, show the sender.
             if (String(senderId) === String(currentUserId)) {
                 user = connection.connectionId;
             } else {
@@ -82,7 +80,6 @@ export default function MyConnectionsPage() {
             }
         }
  else {
-            // For pending requests
             user = type === 'received' ? connection.userId : connection.connectionId;
         }
         
@@ -142,13 +139,11 @@ export default function MyConnectionsPage() {
         );
     };
 
-    // Filter accepted connections from both received and sent
     const acceptedConnections = [
         ...(authState.receivedRequests?.filter(conn => conn.status_accepted === true) || []),
         ...(authState.sentRequests?.filter(conn => conn.status_accepted === true) || [])
     ];
 
-    // Filter pending requests
     const pendingReceivedRequests = authState.receivedRequests?.filter(conn => conn.status_accepted === null) || [];
     const pendingSentRequests = authState.sentRequests?.filter(conn => conn.status_accepted === null) || [];
 

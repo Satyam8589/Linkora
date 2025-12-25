@@ -73,12 +73,6 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload || action.error.message;
       })
-      .addCase(getAllPosts.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.profileFetched = true;
-        state.user = action.payload.profile
-      })
       .addCase(getAboutUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
