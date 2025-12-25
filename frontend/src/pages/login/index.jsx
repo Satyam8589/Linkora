@@ -56,7 +56,9 @@ function LoginComponent() {
               {userLoginMethod ? "Sign In" : "Sign Up"}
             </p>
             <p style={{ color: authState.isError ? "red" : "green" }}>
-              {authState.message.message}
+              {typeof authState.message === 'object' && authState.message?.message 
+                ? authState.message.message 
+                : authState.message || ""}
             </p>
             <div className={styles.inputContainers}>
               {!userLoginMethod && (

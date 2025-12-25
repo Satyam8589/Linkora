@@ -1,0 +1,116 @@
+.allUserProfile {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.userProfile {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e5e5;
+}
+
+.userProfile:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: #4a90e2;
+}
+
+.userProfile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e5e5e5;
+    transition: all 0.3s ease;
+}
+
+.userProfile:hover img {
+    border-color: #4a90e2;
+    transform: scale(1.05);
+}
+
+.userProfile h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.userProfile p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+}
+
+.userProfile button {
+    margin-top: 0.5rem;
+    padding: 0.75rem 2rem;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    width: 100%;
+}
+
+.userProfile button:hover {
+    background: linear-gradient(135deg, #357abd 0%, #2868a8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(74, 144, 226, 0.4);
+}
+
+.userProfile button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+/* Empty state styling */
+.allUserProfile > p {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #999;
+    font-size: 1.1rem;
+    padding: 3rem;
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .allUserProfile {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .userProfile {
+        padding: 1.5rem 1rem;
+    }
+    
+    .userProfile img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .allUserProfile {
+        grid-template-columns: 1fr;
+    }
+}

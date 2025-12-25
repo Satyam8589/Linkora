@@ -47,6 +47,7 @@ const authSlice = createSlice({
         state.isError = false;
         state.isSuccess = true;
         state.loggedIn = true;
+        state.isTokenThere = true;
         state.user = action.payload;
         state.message = "Login successful!";
       })
@@ -63,10 +64,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.isSuccess = true;
-        state.loggedIn = true; // Auto-login after registration
-        state.message = {
-          message: "Registration successful! Please sign in.",
-        };
+        state.loggedIn = false; // Don't auto-login since backend doesn't return token
+        state.message = "Registration successful! Please sign in.";
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;

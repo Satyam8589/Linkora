@@ -20,7 +20,10 @@ export const loginUser = createAsyncThunk(
 
       return thunkAPI.fulfillWithValue(response.data.token);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      // Handle both network errors and API errors
+      return thunkAPI.rejectWithValue(
+        error.response?.data || { message: error.message || "Login failed" }
+      );
     }
   }
 );
@@ -35,12 +38,18 @@ export const registerUser = createAsyncThunk(
         email: user.email,
         name: user.name,
       });
+      
+      // Only set token if it exists (backend might not return token on registration)
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
       }
+      
       return thunkAPI.fulfillWithValue(response.data);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data);
+      // Handle both network errors and API errors
+      return thunkAPI.rejectWithValue(
+        error.response?.data || { message: error.message || "Registration failed" }
+      );
     }
   }
 );

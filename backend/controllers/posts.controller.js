@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Post from "../models/posts.model.js";
 import { error } from "console";
+import Comment from "../models/comments.model.js";
 
 export const activeCheck = async (req, res) => {
   return res.status(200).json({ message: "API is working" });
@@ -76,7 +77,7 @@ export const commentPost = async (req, res) => {
 
   try {
     const user = await User.findOne({ token: token }).select("_id");
-    if(!user) return req.status(404).json({ message: "User not found" });
+    if(!user) return res.status(404).json({ message: "User not found" });
 
     const post = await Post.findOne({
       _id: post_id
@@ -87,7 +88,7 @@ export const commentPost = async (req, res) => {
     const comment = new Comment({
       userId: user._id,
       postId: post._id,
-      comment: commentBody
+      body: commentBody
     });
 
     await comment.save();
@@ -102,14 +103,19 @@ export const commentPost = async (req, res) => {
 
 export const get_comments_by_post = async (req, res) => {
 
-  const { post_id } = req.body;
+  const { post_id } = req.query;
 
   try {
     const post = await Post.findOne({ _id: post_id });
 
     if (!post) return res.status(404).json({ message: "Post not found" });
 
-    return res.json({ comments: post.comments });
+    // Fetch comments from Comment collection and populate user data
+    const comments = await Comment.find({ postId: post_id })
+      .populate("userId", "name username profilePicture")
+      .sort({ createdAt: -1 });
+
+    return res.json({ comments: comments });
 
   } catch (error) {
     return res.status(500).json({ message: error.message });
