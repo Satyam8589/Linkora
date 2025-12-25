@@ -3,7 +3,7 @@ import UserLayout from "@/layout/UserLayout";
 import DashboardLayout from "@/layout/DashboardLayout";
 import styles from "./index.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { whatAreMyConnections, getSentConnectionRequests, acceptConnectionRequest } from "@/config/redux/action/authAction";
+import { whatAreMyConnections, getSentConnectionRequests, acceptConnectionRequest, getAboutUser } from "@/config/redux/action/authAction";
 import { BASE_URL } from "@/config";
 import Image from "next/image";
 
@@ -16,6 +16,9 @@ export default function MyConnectionsPage() {
     useEffect(() => {
         if (token) {
             fetchConnections();
+            if (!authState.profileFetched) {
+                dispatch(getAboutUser({ token }));
+            }
         }
     }, []);
 
@@ -67,20 +70,23 @@ export default function MyConnectionsPage() {
         const currentUserId = authState.user?.userId?._id;
         
         if (type === 'connections') {
-            // For accepted connections, show the OTHER person
-            if (connection.userId?._id === currentUserId) {
+            // Get IDs for comparison, handling both object and string formats
+            const senderId = connection.userId?._id || connection.userId;
+            const receiverId = connection.connectionId?._id || connection.connectionId;
+            
+            // If I am the sender, show the receiver. If I am the receiver, show the sender.
+            if (String(senderId) === String(currentUserId)) {
                 user = connection.connectionId;
-            } else if (connection.connectionId?._id === currentUserId) {
-                user = connection.userId;
             } else {
-                user = connection.connectionId || connection.userId;
+                user = connection.userId;
             }
-        } else {
+        }
+ else {
             // For pending requests
             user = type === 'received' ? connection.userId : connection.connectionId;
         }
         
-        if (!user) return null;
+        if (!user || typeof user === 'string') return null;
 
         const isAccepted = connection.status_accepted === true;
 
