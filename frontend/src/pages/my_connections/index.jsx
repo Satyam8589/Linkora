@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { whatAreMyConnections, getSentConnectionRequests, acceptConnectionRequest, getAboutUser } from "@/config/redux/action/authAction";
 import { BASE_URL } from "@/config";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function MyConnectionsPage() {
     const dispatch = useDispatch();
     const authState = useSelector((state) => state.auth);
+    const router = useRouter();
     const [activeTab, setActiveTab] = useState('connections');
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
@@ -89,7 +91,11 @@ export default function MyConnectionsPage() {
 
         return (
             <div key={connection._id} className={styles.connectionCard}>
-                <div className={styles.userInfo}>
+                <div 
+                    className={styles.userInfo} 
+                    onClick={() => router.push(`/view_profile/${user.username}`)}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div className={styles.avatar}>
                         <Image
                             src={
