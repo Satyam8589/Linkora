@@ -4,7 +4,7 @@ import { getAllPosts } from "../../action/postAction";
 import { getAllUsers } from "../../action/authAction";
 
 const initialState = {
-  user: [],
+  user: undefined,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -84,6 +84,7 @@ const authSlice = createSlice({
         state.isError = false;
         state.profileFetched = true;
         state.user = action.payload;
+        console.log("User profile fetched:", action.payload);
       })
       .addCase(getAllUsers.fulfilled, (state, action) => {
         state.isLoading = false;
