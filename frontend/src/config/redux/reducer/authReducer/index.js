@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser, getAboutUser, getAllUsers, sendConnectionRequest, getConnectionRequest, getMyConnectionRequests, acceptConnectionRequest, whatAreMyConnections, getSentConnectionRequests } from "../../action/authAction";
+import { loginUser, registerUser, getAboutUser, getAllUsers, sendConnectionRequest, getConnectionRequest, getMyConnectionRequests, acceptConnectionRequest, whatAreMyConnections, getSentConnectionRequests, updateCoverPhoto, updateProfileData } from "../../action/authAction";
 import { getAllPosts } from "../../action/postAction";
 
 const initialState = {
@@ -110,6 +110,32 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.sentRequests = action.payload.connections || [];
+      })
+      .addCase(updateCoverPhoto.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateCoverPhoto.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.message = "Cover photo updated successfully!";
+      })
+      .addCase(updateCoverPhoto.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload?.message || "Failed to update cover photo";
+      })
+      .addCase(updateProfileData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfileData.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isError = false;
+        state.message = "Profile data updated successfully!";
+      })
+      .addCase(updateProfileData.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload?.message || "Failed to update profile data";
       })
   },
 });

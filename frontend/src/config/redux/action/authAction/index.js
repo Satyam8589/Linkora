@@ -177,3 +177,55 @@ export const getSentConnectionRequests = createAsyncThunk(
     }
   }
 )
+
+export const updateCoverPhoto = createAsyncThunk(
+  "user/updateCoverPhoto",
+  async ({ file, token }, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append("cover_photo", file);
+      formData.append("token", token);
+
+      const response = await clientServer.post(
+        "/update_cover_photo",
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      );
+      
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || { message: error.message });
+    }
+  }
+)
+
+export const updateProfileData = createAsyncThunk(
+  "user/updateProfileData",
+  async ({ token, bio, currentPost, education, pastWork }, thunkAPI) => {
+    try {
+      const response = await clientServer.post(
+        "/update_profile_data",
+        {
+          token,
+          bio,
+          currentPost,
+          education,
+          pastWork
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || { message: error.message });
+    }
+  }
+)

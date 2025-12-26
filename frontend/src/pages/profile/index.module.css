@@ -1,0 +1,1124 @@
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Cover Photo Section */
+.coverSection {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.coverPhoto {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.defaultCover {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Cover Photo Camera Icon */
+.coverCameraIconOverlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    z-index: 5;
+}
+
+.coverCameraIconOverlay:hover {
+    background: rgba(0, 0, 0, 0.75);
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.coverCameraText {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Profile Picture */
+.profilePictureWrapper {
+    position: absolute;
+    bottom: -60px;
+    left: 32px;
+    z-index: 10;
+}
+
+.profilePicture {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 6px solid #ffffff;
+    background: #f0f2f5;
+    overflow: visible;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.defaultAvatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.profileImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* Camera Icon Overlay */
+.cameraIconOverlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+}
+
+.cameraIconOverlay:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+.cameraIcon {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.hiddenFileInput {
+    display: none;
+}
+
+/* User Info Section */
+.userInfo {
+    padding: 72px 32px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.userDetails {
+    flex: 1;
+}
+
+.userName {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+    line-height: 1.2;
+}
+
+.userUsername {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+}
+
+.userHeadline {
+    font-size: 15px;
+    color: #4b5563;
+    margin: 8px 0 0 0;
+    line-height: 1.5;
+}
+
+/* Name Edit Container */
+.nameEditContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+
+.nameInput {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1f2937;
+    padding: 8px 12px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: white;
+    min-width: 300px;
+}
+
+.nameInput:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.saveNameBtn {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.saveNameBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.saveNameBtn:active {
+    transform: translateY(0);
+}
+
+/* Action Buttons */
+.actionButtons {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.connectBtn,
+.messageBtn,
+.editBtn {
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.connectBtn,
+.editBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.connectBtn:hover:not(:disabled),
+.editBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+}
+
+.connectBtn:disabled {
+    background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+.messageBtn {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.messageBtn:hover {
+    background: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+/* Stats Section */
+.statsSection {
+    display: flex;
+    padding: 24px 32px;
+    gap: 48px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.statNumber {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.statLabel {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Bio Section */
+.bioSection {
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 8px 0;
+}
+
+.bioText {
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+    margin-bottom: 8px;
+}
+
+/* Skills */
+.skillsContainer {
+    margin-top: 24px;
+}
+
+.skillsTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+}
+
+.skillsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skillTag {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    color: #667eea;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+}
+
+.skillTag:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    transform: translateY(-2px);
+}
+
+/* Posts Section */
+.postsSection {
+    padding: 32px;
+}
+
+.postsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+/* Post Card */
+.postCard {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.postCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: #667eea;
+}
+
+.postMedia {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    background: #f3f4f6;
+    overflow: hidden;
+}
+
+.postImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.postVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.postContent {
+    padding: 16px;
+}
+
+.postBody {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.6;
+    margin: 0 0 12px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.postFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.postLikes {
+    font-size: 14px;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.postDate {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.emptyState {
+    grid-column: 1 / -1;
+    padding: 48px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .coverSection {
+        height: 180px;
+    }
+
+    .profilePictureWrapper {
+        bottom: -50px;
+        left: 20px;
+    }
+
+    .profilePicture {
+        width: 100px;
+        height: 100px;
+        border: 4px solid #ffffff;
+    }
+
+    .defaultAvatar {
+        font-size: 36px;
+    }
+
+    .userInfo {
+        padding: 60px 20px 20px;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .userName {
+        font-size: 24px;
+    }
+
+    .actionButtons {
+        width: 100%;
+    }
+
+    .connectBtn,
+    .messageBtn,
+    .editBtn {
+        flex: 1;
+    }
+
+    .statsSection {
+        padding: 20px;
+        gap: 24px;
+        justify-content: space-around;
+    }
+
+    .statNumber {
+        font-size: 20px;
+    }
+
+    .bioSection,
+    .postsSection {
+        padding: 24px 20px;
+    }
+
+    .postsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .statsSection {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .statItem {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px;
+        background: #f9fafb;
+        border-radius: 12px;
+    }
+}
+
+/* About Section Editing Styles */
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.saveSectionBtn {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.saveSectionBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.bioTextarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #4b5563;
+    line-height: 1.7;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+.bioTextarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.subsection {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.subsection:first-of-type {
+    margin-top: 24px;
+    padding-top: 0;
+    border-top: none;
+}
+
+.subsectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.subsectionTitle {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+}
+
+.addBtn {
+    padding: 6px 16px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.addBtn:hover {
+    background: #764ba2;
+    transform: translateY(-1px);
+}
+
+.arrayItem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.arrayItem:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-color: #d1d5db;
+}
+
+.arrayInput {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1f2937;
+    transition: all 0.3s ease;
+}
+
+.arrayInput:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.removeBtn {
+    padding: 8px 16px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.removeBtn:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+.educationItem,
+.workItem {
+    padding: 18px 20px;
+    background: #fafbfc;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #f3f4f6;
+    transition: all 0.3s ease;
+}
+
+.educationItem:hover,
+.workItem:hover {
+    background: #f9fafb;
+    border-color: #e5e7eb;
+    transform: translateX(4px);
+}
+
+.itemTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 4px 0;
+}
+
+.itemSubtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+.emptyText {
+    font-size: 14px;
+    color: #9ca3af;
+    font-style: italic;
+    margin: 0;
+    padding: 16px;
+    background: #fafbfc;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px dashed #e5e7eb;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Tablet and below (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .coverSection {
+        height: 200px;
+    }
+
+    .profilePictureWrapper {
+        bottom: -50px;
+        left: 24px;
+    }
+
+    .profilePicture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .userInfo {
+        padding: 60px 24px 20px;
+    }
+
+    .statsSection {
+        padding: 20px 24px;
+        gap: 32px;
+    }
+
+    .bioSection {
+        padding: 24px;
+    }
+
+    .postsSection {
+        padding: 24px;
+    }
+
+    .postsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+/* Mobile landscape and below (max-width: 768px) */
+@media (max-width: 768px) {
+    .coverSection {
+        height: 180px;
+    }
+
+    .profilePictureWrapper {
+        bottom: -40px;
+        left: 20px;
+    }
+
+    .profilePicture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profileImageWrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .cameraIconOverlay {
+        width: 32px;
+        height: 32px;
+        bottom: 4px;
+        right: 4px;
+    }
+
+    .cameraIcon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .userInfo {
+        padding: 50px 20px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .userName {
+        font-size: 24px;
+    }
+
+    .userUsername {
+        font-size: 14px;
+    }
+
+    .userHeadline {
+        font-size: 14px;
+    }
+
+    .actionButtons {
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .actionButtons button {
+        flex: 1;
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .statsSection {
+        padding: 16px 20px;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .statItem {
+        min-width: 80px;
+    }
+
+    .statNumber {
+        font-size: 20px;
+    }
+
+    .statLabel {
+        font-size: 12px;
+    }
+
+    .bioSection {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .sectionTitle {
+        font-size: 20px;
+    }
+
+    .sectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .saveSectionBtn {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .subsectionTitle {
+        font-size: 16px;
+    }
+
+    .subsectionHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .addBtn {
+        width: 100%;
+    }
+
+    .arrayItem {
+        padding: 16px;
+    }
+
+    .arrayInput {
+        font-size: 14px;
+    }
+
+    .nameEditContainer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nameInput {
+        font-size: 22px;
+        min-width: 100%;
+    }
+
+    .saveNameBtn {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .bioTextarea {
+        font-size: 14px;
+    }
+
+    .postsSection {
+        padding: 20px;
+    }
+
+    .postsGrid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .skillsList {
+        gap: 6px;
+    }
+
+    .skillTag {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile portrait (max-width: 480px) */
+@media (max-width: 480px) {
+    .coverSection {
+        height: 150px;
+    }
+
+    .profilePictureWrapper {
+        bottom: -35px;
+        left: 16px;
+    }
+
+    .profilePicture {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profileImageWrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cameraIconOverlay {
+        width: 28px;
+        height: 28px;
+        bottom: 2px;
+        right: 2px;
+    }
+
+    .cameraIcon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .userInfo {
+        padding: 45px 16px 12px;
+    }
+
+    .userName {
+        font-size: 20px;
+    }
+
+    .userUsername {
+        font-size: 13px;
+    }
+
+    .userHeadline {
+        font-size: 13px;
+    }
+
+    .actionButtons button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .statsSection {
+        padding: 12px 16px;
+        gap: 16px;
+    }
+
+    .statItem {
+        min-width: 70px;
+    }
+
+    .statNumber {
+        font-size: 18px;
+    }
+
+    .statLabel {
+        font-size: 11px;
+    }
+
+    .bioSection {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .sectionTitle {
+        font-size: 18px;
+    }
+
+    .bioText {
+        font-size: 14px;
+    }
+
+    .subsection {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .subsectionTitle {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .arrayItem {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .arrayInput {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .removeBtn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .addBtn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .saveSectionBtn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .nameInput {
+        font-size: 20px;
+        padding: 6px 10px;
+    }
+
+    .saveNameBtn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .bioTextarea {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .educationItem,
+    .workItem {
+        padding: 14px 16px;
+    }
+
+    .itemTitle {
+        font-size: 14px;
+    }
+
+    .itemSubtitle {
+        font-size: 13px;
+    }
+
+    .emptyText {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .postsSection {
+        padding: 16px;
+    }
+
+    .skillTag {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .coverCameraIconOverlay {
+        padding: 12px 18px;
+    }
+
+    .coverCameraText {
+        font-size: 13px;
+    }
+}
+
+/* Extra small devices (max-width: 360px) */
+@media (max-width: 360px) {
+    .coverSection {
+        height: 120px;
+    }
+
+    .profilePicture {
+        width: 70px;
+        height: 70px;
+    }
+
+    .profileImageWrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .userName {
+        font-size: 18px;
+    }
+
+    .statsSection {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .statItem {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
+        background: #f9fafb;
+        border-radius: 8px;
+    }
+
+    .bioSection {
+        padding: 12px;
+    }
+
+    .sectionTitle {
+        font-size: 16px;
+    }
+}

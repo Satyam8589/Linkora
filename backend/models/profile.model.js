@@ -51,6 +51,10 @@ const ProfileSchema = new mongoose.Schema({
     type: [educationSchema],
     default: [],
   },
+  coverPhoto: {
+    type: String,
+    default: "",
+  },
 });
 
 const Profile = mongoose.model("Profile", ProfileSchema);

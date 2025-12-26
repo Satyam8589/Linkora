@@ -122,6 +122,27 @@ export const uploadProfilePicture = async (req, res) => {
   }
 };
 
+export const uploadCoverPhoto = async (req, res) => {
+  const { token } = req.body;
+
+  try {
+    const user = await User.findOne({ token: token });
+    if (!user) return res.status(400).json({ message: "User not exists" });
+
+    const profile = await Profile.findOne({ userId: user._id });
+    if (!profile) return res.status(400).json({ message: "Profile not found" });
+
+    profile.coverPhoto = req.file.filename;
+
+    await profile.save();
+
+    return res.json({ message: "Cover photo updated" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+
 export const updateUserProfile = async (req, res) => {
   try {
     const { token, ...newUserData } = req.body;
@@ -171,6 +192,9 @@ export const getUserAndProfile = async (req, res) => {
 export const updateProfileData = async (req, res) => {
   try {
     const { token, ...newProfileData } = req.body;
+    
+    console.log("Received profile update data:", newProfileData);
+    
     const userProfile = await User.findOne({ token: token });
 
     if (!userProfile)
@@ -180,12 +204,27 @@ export const updateProfileData = async (req, res) => {
       userId: userProfile._id,
     });
 
+    console.log("Profile before update:", {
+      bio: profile_to_update.bio,
+      education: profile_to_update.education,
+      pastWork: profile_to_update.pastWork
+    });
+
     Object.assign(profile_to_update, newProfileData);
+
+    console.log("Profile after assign:", {
+      bio: profile_to_update.bio,
+      education: profile_to_update.education,
+      pastWork: profile_to_update.pastWork
+    });
 
     await profile_to_update.save();
 
+    console.log("Profile saved successfully");
+
     return res.json({ message: "User profile updated" });
   } catch (error) {
+    console.error("Error in updateProfileData:", error);
     return res.status(500).json({ message: error.message });
   }
 };
