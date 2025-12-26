@@ -16,7 +16,10 @@
     align-items: center;
     background-color: #f5f5f5;
     border-radius: 20px;
-    position: relative;
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .fab {
@@ -79,7 +82,7 @@
 
 .postsContainer {
     width: 70%;
-    margin-top: 2rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
